@@ -23,6 +23,71 @@ import "fmt"
 
 // Go workspace src (code files)/pkg (packages)/bin (executables)
 
+// keyword(var) name type
+// var x int
+// var y float32
+// var z string
+
+// Type Declarations (alias)
+// type celsius float64
+
+// var temp celsius
+
+// Innitializing Variables
+// Initialize in the declaration
+// var m int = 100
+
+// var n = 100
+
+// Uninitialized zero value
+
+// Short Variable Declarations (Can only inside func)
+
+// oq := 100
+
+// Data types
+// Pointers & Address * Data
+// new() returns a pointer to obj
+
+// Variable Scope
+// Blocks
+// Stack(auto deallocating after function complete)
+// Heap is persistant (determined by garbage collection during compile time)
+
+//printf
+// %s is conversion character for an argument (be substituted in %s)
+
+// String, Read-one, 0x41=A is a code point in unicode (rune in go)
+// String, sequence of arbitrary bytes
+// String literal, x := "Hi there"
+
+// String Manipulation
+
+// Type conversions
+
+// Constants
+
+type Grades int
+
+const (
+	A Grades = iota
+	B
+	C
+)
+
+// for <init(option)>; <cond>; <update(option)> {
+// 		<stmts>
+// 		<update(option)>
+// }
+
+// Switch / Case, x is a tag which is a variable to be checked
+
+// Tagless Switch. (excute first one, else if like)
+
+// Break continue
+
+// Scan
+
 // Why use functions?
 // Reusability
 // Abstraction (Hiddle details, improve understandability)
