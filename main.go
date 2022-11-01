@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"go-example/data"
+)
 
 // Advantages of go
 // Code runs fast
@@ -88,6 +91,29 @@ const (
 
 // Scan
 
+// Class(template): Collection of data fields(not data) and functions
+// Associating Methods with Data: Method has a receiver type that it is associated with
+
+// Object: Instance of class, contains real data
+// Encapssulation: Data can be accessed only using methods
+// Method has a receiver type that is associated with
+type MyInt int
+
+func (mi MyInt) Double() int {
+	return int(mi * 2)
+}
+
+// struct types compose data fields
+// type Point struct {
+// 	x float64
+// 	y float64
+// }
+
+// func (p Point) DistToOrigin() {
+// 	t := math.Pow(p.x, 2) + math.Pow(p.y, 2)
+// 	return math.Sqrt(t)
+// }
+
 // Why use functions?
 // Reusability
 // Abstraction (Hiddle details, improve understandability)
@@ -120,6 +146,20 @@ func foor(y *int) {
 }
 
 func main() {
+
+	// Call by reference(Copy)
+	v := MyInt(3)
+	fmt.Println(v.Double())
+
+	// Encapsulation: Controlling Access
+	// Can define public functions to allow acacess to hidden data
+	data.PrintX()
+	// No need to reference
+	var p data.Point
+	p.InitMe(3, 4)
+	p.Scale(2)
+	p.PrintMe()
+
 	foo(2, 3)
 	// variable assignment: a, b to get captured
 	// :=call the func, pass the Arguments (2, 3), (2, 3) is going to get bound to x inside the function foo when it gets executed.
