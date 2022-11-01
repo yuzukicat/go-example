@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"go-example/data"
+	"go-example/trunc"
 )
 
 // Advantages of go
@@ -146,6 +147,9 @@ func foor(y *int) {
 }
 
 func main() {
+
+	// trunc assignment
+	trunc.Trunc()
 
 	// Call by reference(Copy)
 	v := MyInt(3)
