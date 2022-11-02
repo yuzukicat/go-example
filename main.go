@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"go-example/data"
+	"go-example/findian"
+	"go-example/hello"
 	"go-example/trunc"
 )
 
@@ -93,7 +95,7 @@ const (
 // Scan
 
 // Class(template): Collection of data fields(not data) and functions
-// Associating Methods with Data: Method has a receiver type that it is associated with
+// Associating Methods with Data: M	// "go-example/hello"ethod has a receiver type that it is associated with
 
 // Object: Instance of class, contains real data
 // Encapssulation: Data can be accessed only using methods
@@ -108,11 +110,6 @@ func (mi MyInt) Double() int {
 // type Point struct {
 // 	x float64
 // 	y float64
-// }
-
-// func (p Point) DistToOrigin() {
-// 	t := math.Pow(p.x, 2) + math.Pow(p.y, 2)
-// 	return math.Sqrt(t)
 // }
 
 // Why use functions?
@@ -179,4 +176,8 @@ func main() {
 	// x was defined in the scope of main
 	foor(&x)
 	fmt.Print(x)
+
+	hello.Hello()
+
+	findian.Findian()
 }
