@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
-	"go-example/data"
-	"go-example/findian"
-	"go-example/hello"
-	"go-example/trunc"
+	// "go-example/data"
+	// "go-example/findian"
+	// "go-example/hello"
+	// "go-example/trunc"
 )
 
 // Advantages of go
@@ -112,6 +112,13 @@ func (mi MyInt) Double() int {
 // 	y float64
 // }
 
+// Composite data types: arrays, slices, maps, structs
+// Aggregate
+// Arrays: Fixed-length series of elements of a choosen type
+// Elements accessed using subscript notion, []
+// Indices start at 0
+// Elements initialized to zero value
+
 // Why use functions?
 // Reusability
 // Abstraction (Hiddle details, improve understandability)
@@ -145,39 +152,122 @@ func foor(y *int) {
 
 func main() {
 
-	// trunc assignment
-	trunc.Trunc()
+	// // trunc assignment
+	// trunc.Trunc()
 
-	// Call by reference(Copy)
-	v := MyInt(3)
-	fmt.Println(v.Double())
+	// // Call by reference(Copy)
+	// v := MyInt(3)
+	// fmt.Println(v.Double())
 
-	// Encapsulation: Controlling Access
-	// Can define public functions to allow acacess to hidden data
-	data.PrintX()
-	// No need to reference
-	var p data.Point
-	p.InitMe(3, 4)
-	p.Scale(2)
-	p.PrintMe()
+	// // Encapsulation: Controlling Access
+	// // Can define public functions to allow acacess to hidden data
+	// data.PrintX()
+	// // No need to reference
+	// var p data.Point
+	// p.InitMe(3, 4)
+	// p.Scale(2)
+	// p.PrintMe()
 
-	foo(2, 3)
-	// variable assignment: a, b to get captured
-	// :=call the func, pass the Arguments (2, 3), (2, 3) is going to get bound to x inside the function foo when it gets executed.
-	// (2, 3) is get evaluated, and be replaced with (2, 5), when excuted, (2, 5) is assigned to (a, b)
-	// return value must have an assignment.
-	a, b := foo2(2, 3)
-	print(a, b)
+	// foo(2, 3)
+	// // variable assignment: a, b to get captured
+	// // :=call the func, pass the Arguments (2, 3), (2, 3) is going to get bound to x inside the function foo when it gets executed.
+	// // (2, 3) is get evaluated, and be replaced with (2, 5), when excuted, (2, 5) is assigned to (a, b)
+	// // return value must have an assignment.
+	// a, b := foo2(2, 3)
+	// print(a, b)
 
-	x := 2
-	// pass a point to x, pass that to foor, foor have access to (a copy of the location in the memory where x is)
-	// so foor modifying the data at that location
-	// foor has the ability to alter variable x (even though x was not initially defined inside the scope of foo)
-	// x was defined in the scope of main
-	foor(&x)
-	fmt.Print(x)
+	// x := 2
+	// // pass a point to x, pass that to foor, foor have access to (a copy of the location in the memory where x is)
+	// // so foor modifying the data at that location
+	// // foor has the ability to alter variable x (even though x was not initially defined inside the scope of foo)
+	// // x was defined in the scope of main
+	// foor(&x)
+	// fmt.Print(x)
 
-	hello.Hello()
+	// hello.Hello()
 
-	findian.Findian()
+	// findian.Findian()
+
+	var ar [5]int
+	ar[0] = 2
+	fmt.Println(ar[1])
+
+	// Array Literal
+	// An array pre-defined with values
+	// ...for size in array lteral infers size from number of initializers
+	ar2 := [...]int{1, 2, 3, 4, 5}
+	fmt.Println(ar2)
+	for ind, val := range ar2 {
+		fmt.Println(ind, val)
+	}
+
+	// Slices: A window on an underlying array
+	// Slices properties: Pointer, indicates the start of the slice
+	// Length
+	// Capacity, From start of slice to end of array
+	arr := [...]string{"a", "b", "c", "d", "e", "", "g"}
+	sli1 := arr[1:3]
+	sli2 := arr[2:5]
+	fmt.Println(len(sli1), cap(sli2))
+	// Accessing Slices
+	// Writing to a slice changes underlying array and
+	// Overlapping slices refer to the same array elements
+	fmt.Println(sli1[1])
+	fmt.Println(sli2[0])
+	// Slice Literals, can be used to initialize a slice
+	// Creates the underlying array and creates a slice to reference it
+	// Slice points to the start of the array, length is capacity
+	sli3 := []int{1, 2, 3}
+	fmt.Println(sli3)
+	// Make a slice
+	// 2-argument version: specify type and length/capcity
+	sli4 := make([]int, 0, 3)
+	fmt.Println(sli4)
+	sli5 := make([]int, 10, 15)
+	fmt.Println(sli5)
+	// Append. size of a slice can be increased by append()
+	// Inserts into underlying array
+	// Increases size of array if necessary
+	sli4 = append(sli4, 100)
+	fmt.Println(sli4)
+	// Hash table, contains key/value pairs
+	// Each vallue is associated with a unique key
+	// Hash function is used to compute the slot (return) for a key (argument)
+	// Advantages of hash tables: Constant-time vs linear-time, faster lookup than lists
+	// Arbitrary keys.
+	// Disadvantages. May have collisions: Two keys hash to the same slot
+	// Maps. Golang implementation of a hash table
+	// Use make() to create a map
+	var idMap map[string]int
+	idMap2 := make(map[string]int)
+	idMap3 := map[string]int{
+		"joe": 123,
+	}
+	fmt.Println(idMap)
+	fmt.Println(idMap2)
+	fmt.Println(idMap3["joe"])
+	// Accessing Maps. Referencing a value with [key]
+	// returns zero if key is not present
+	// Adding/change a key/value pair
+	idMap3["jane"] = 456
+	fmt.Println(idMap3)
+	// Deleting a key/value pair
+	delete(idMap3, "joe")
+	fmt.Println(idMap3)
+	// Map Functions
+	// Two-value assignment tests for existence of the key
+	id, p := idMap3["jane"] // p is boolean (presence of key)
+	fmt.Println(id, p)
+	// len() returns number of values
+	fmt.Println(len(idMap3))
+	// Iterrating through a map
+	// Use a for loop with the range keyword
+	// Two-value assignment with range
+	for key, val := range idMap3 {
+		fmt.Println(key, val)
+	}
+
+	// Struct: Aggregate data type
+	// Groups together other objects of arbitrary type
+	// For organizational purposes, it is helps
 }
