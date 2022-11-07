@@ -10,8 +10,8 @@ func Findian() {
 	fmt.Scanln(&userinput)
 	match, _ := regexp.MatchString("^[i,I].*[a,A].*[n,N]$", userinput)
 	if match {
-		fmt.Println("Found")
+		fmt.Println("Found!")
 	} else {
-		fmt.Println("Not Found")
+		fmt.Println("Not Found!")
 	}
 }

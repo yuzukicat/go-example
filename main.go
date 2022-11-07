@@ -190,9 +190,6 @@ func main() {
 
 	var ar [5]int
 	ar[0] = 2
-	fmt.Println(ar[1])
-
-	// Array Literal
 	// An array pre-defined with values
 	// ...for size in array lteral infers size from number of initializers
 	ar2 := [...]int{1, 2, 3, 4, 5}
@@ -270,4 +267,14 @@ func main() {
 	// Struct: Aggregate data type
 	// Groups together other objects of arbitrary type
 	// For organizational purposes, it is helps
+	// type struct Person {
+	// 	//field
+	// 	name string
+	// 	addr string
+	// 	phone string
+	// }
+	// var p1 Person
+	// p1.name = "joe"
+	// x = p1.name
+	// fmt.Println(x)
 }
