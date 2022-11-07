@@ -151,6 +151,28 @@ func foor(y *int) {
 	*y = *y + 1
 }
 
+// Passing array pointers
+func fooArr(x *[3]int) {
+	(*x)[0] = (*x)[0] + 1
+}
+
+// slice contain a pointer to the array
+// Passing a slice copies the pointer
+// Can use the pointer directly to modify the slice without dereference/reference
+// when defining a slice, the size of the slice can not be defined
+func fooSlice(sli []int) {
+	sli[0] = sli[0] + 1
+}
+
+// Code = functions + data
+// Features can be found quickly
+// Where data is defined can be found quickly
+// Debugging from functions (understandable) or data (traceable)
+// Function Cohesion: Function should perform only one operation
+// Less number of parameters
+// Function Complexity: Function length(lines)
+// Use Function Call Hierarchy
+// Control-flow Comlexity: Partitioning Conditions
 func main() {
 
 	// // trunc assignment
@@ -184,6 +206,14 @@ func main() {
 	// // x was defined in the scope of main
 	// foor(&x)
 	// fmt.Print(x)
+
+	aArr := [3]int{1, 2, 3}
+	fooArr(&aArr)
+	fmt.Print(aArr)
+
+	aSli := []int{1, 2, 3}
+	fooSlice(aSli)
+	fmt.Print(aSli)
 
 	// hello.Hello()
 
