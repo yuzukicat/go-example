@@ -7,6 +7,7 @@ import (
 	// "go-example/hello"
 	// "go-example/trunc"
 	// "go-example/slice"
+	"math"
 )
 
 // Advantages of go
@@ -171,9 +172,59 @@ func fooSlice(sli []int) {
 // Function Cohesion: Function should perform only one operation
 // Less number of parameters
 // Function Complexity: Function length(lines)
-// Use Function Call Hierarchy
+// Use Function Call Hierarchyv
 // Control-flow Comlexity: Partitioning Conditions
+
+// Function as First-Class
+// Function Type
+// Dynamically create (Define) Function
+// Function can be passed as arguments (to another function) and returned as values
+// Function can be stored in data structures
+var funcVar func(int) int
+
+func incFn(x int) int {
+	return x + 1
+}
+
+func decFn(x int) int {
+	return x - 1
+}
+
+func applyIt(afunct func(int) int, val int) int {
+	return afunct(val)
+}
+
+// Anonymous Function
+
+func MakeDistOrigin(o_x, o_y float64) func(float64, float64) float64 {
+	fn := func(x, y float64) float64 {
+		return math.Sqrt(math.Pow(x-o_x, 2) + math.Pow(y-o_y, 2))
+	}
+	return fn
+}
+
+// Closure: Function + its Environment
+
+// Variadic: Pass a slice to a variadic function
+func getMax(vals ...int) int {
+	maxV := -1
+	for _, v := range vals {
+		if v > maxV {
+			maxV = v
+		}
+	}
+	return maxV
+}
+
+// Deffered Functions: Functions can be Deffered until the surronding function complete
+// Be used in clean up
+// Arguements of a deffered call are evaluated immediately
+
 func main() {
+
+	evaluateI := 1
+	evaluateI++
+	defer fmt.Print(evaluateI)
 
 	// // trunc assignment
 	// trunc.Trunc()
@@ -310,4 +361,17 @@ func main() {
 	// fmt.Println(x)
 
 	// slice.SliceScanln()
+
+	funcVar = incFn
+	fmt.Print(funcVar(1))
+
+	fmt.Print(applyIt(incFn, 1))
+	fmt.Print(applyIt(decFn, 1))
+
+	fmt.Print(getMax(1, 3, 4, 6))
+
+	vslice := []int{1, 3, 6, 4}
+
+	fmt.Print(getMax(vslice...))
+
 }
