@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	// "go-example/data"
+	"go-example/data"
+
 	// "go-example/findian"
 	// "go-example/hello"
 	// "go-example/trunc"
@@ -237,10 +238,10 @@ func main() {
 	// // Can define public functions to allow acacess to hidden data
 	// data.PrintX()
 	// // No need to reference
-	// var p data.Point
-	// p.InitMe(3, 4)
-	// p.Scale(2)
-	// p.PrintMe()
+	var p data.Point
+	p.InitMe(3, 4)
+	p.Scale(2)
+	p.PrintMe()
 
 	// foo(2, 3)
 	// // variable assignment: a, b to get captured
