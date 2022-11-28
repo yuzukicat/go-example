@@ -1,11 +1,22 @@
-package animal
+package main
 
-import "fmt"
+import (
+	"fmt"
+	"regexp"
+)
 
 type Animal struct {
 	food       string
 	locomotion string
 	noise      string
+}
+
+func (p *Animal) UserInput() {
+	var userinput string
+	fmt.Scanln(&userinput)
+	r := regexp.MustCompile(`(?P<Name>[cow|bird|snake]+)(?P<Action>[eat|move|speak]+)`)
+	res := r.FindAllStringSubmatch(userinput, -1)
+	fmt.Print(res[0][0])
 }
 
 func (p *Animal) InitAnimal(name string) {
@@ -24,6 +35,16 @@ func (p *Animal) InitAnimal(name string) {
 	}
 }
 
+func (p *Animal) AnimalAction(action string) {
+	if action == "eat" {
+		p.Eat()
+	} else if action == "move" {
+		p.Move()
+	} else if action == "speak" {
+		p.Speak()
+	}
+}
+
 func (p *Animal) Eat() {
 	fmt.Print(p.food)
 }
@@ -34,4 +55,9 @@ func (p *Animal) Move() {
 
 func (p *Animal) Speak() {
 	fmt.Print(p.noise)
+}
+
+func main() {
+	var animal Animal
+	animal.UserInput()
 }
