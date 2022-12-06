@@ -161,6 +161,7 @@ func fooArr(x *[3]int) {
 // slice contain a pointer to the array
 // Passing a slice copies the pointer
 // Can use the pointer directly to modify the slice without dereference/reference
+
 // when defining a slice, the size of the slice can not be defined
 func fooSlice(sli []int) {
 	sli[0] = sli[0] + 1
