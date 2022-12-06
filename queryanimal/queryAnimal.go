@@ -14,9 +14,12 @@ type Animal struct {
 func (p *Animal) UserInput() {
 	var userinput string
 	fmt.Scanln(&userinput)
-	r := regexp.MustCompile(`(?P<Name>[cow|bird|snake]+)(?P<Action>[eat|move|speak]+)`)
+	r := regexp.MustCompile(`(^cow|^bird|^snake)+[^\>]*(eat$|move$|speak$)+`)
 	res := r.FindAllStringSubmatch(userinput, -1)
-	fmt.Print(res[0][0])
+	name := res[0][1]
+	p.InitAnimal(name)
+	action := res[0][2]
+	p.AnimalAction(action)
 }
 
 func (p *Animal) InitAnimal(name string) {
