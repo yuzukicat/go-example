@@ -1,4 +1,4 @@
-package main
+package mapExample
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ import (
 // 	studentAgeNilMap["John"] = 28
 // }
 
-func main() {
+func MapExample() {
 	// Declare and initialize a map
 	studentAgesMap := map[string]int{
 		"John": 28,
@@ -29,6 +29,24 @@ func main() {
 	// But if you try to do the same with a nil map, you'll get an error.
 
 	//
-	studentAgeChristy := studentAgeMap["Christy"]
-	fmt.Println(studentAgeChristy)
+	studentAgeChristy, exist := studentAgeMap["Christy"]
+	if exist {
+		fmt.Println(studentAgeChristy)
+	} else {
+		fmt.Println("Not Found")
+	}
+
+	// Remove items
+	delete(studentAgeMap, "Blob")
+	fmt.Println(studentAgeMap)
+
+	// if you try to delete an item that doesn't exist, Go won't panic.
+
+	// Loop in a map
+	studentAgeMap["Blob"] = 26
+	studentAgeMap["Christy"] = 20
+	for name, age := range studentAgeMap {
+		fmt.Printf("%s\t%d\n", name, age)
+	}
+
 }
